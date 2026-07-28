@@ -1,0 +1,13 @@
+# AegisLab backend dependencies (pinned to the versions verified in development).
+# Install:  pip install -r backend/requirements.txt
+
+fastapi==0.139.2
+uvicorn==0.51.0
+pydantic==2.13.4
+pyserial==3.5
+mysql-connector-python==9.7.0
+python-dotenv==1.2.2
+
+# Test dependencies
+pytest==9.1.1
+httpx==0.28.1

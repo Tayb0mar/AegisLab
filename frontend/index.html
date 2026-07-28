@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AegisLab — Environmental Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◈</span>
+      <div>
+        <h1>AegisLab</h1>
+        <p class="subtitle">Environmental monitoring prototype</p>
+      </div>
+    </div>
+    <div class="topbar-status">
+      <span id="sim-badge" class="badge badge-sim hidden">SIMULATED DATA</span>
+      <span id="device-badge" class="badge badge-unknown">CONNECTING…</span>
+    </div>
+  </header>
+
+  <div id="api-error-banner" class="banner banner-error hidden" role="alert">
+    API unreachable — the values below are NOT live.
+  </div>
+  <div id="degraded-banner" class="banner banner-warn hidden" role="alert">
+    Backend degraded: database unavailable. Monitoring data cannot be stored or read.
+  </div>
+
+  <main>
+    <section class="status-strip" aria-label="System status">
+      <div class="status-item">
+        <span class="status-label">Application</span>
+        <span id="app-status" class="status-value">—</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Device</span>
+        <span id="device-status" class="status-value">—</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Last reading</span>
+        <span id="last-reading" class="status-value">—</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Data source</span>
+        <span id="data-source" class="status-value">—</span>
+      </div>
+    </section>
+
+    <section class="cards" aria-label="Current sensor values">
+      <article class="card" id="card-temperature">
+        <h2>Temperature</h2>
+        <p class="value"><span id="temperature-value">—</span><span class="unit">°C</span></p>
+      </article>
+      <article class="card" id="card-humidity">
+        <h2>Humidity</h2>
+        <p class="value"><span id="humidity-value">—</span><span class="unit">%</span></p>
+      </article>
+      <article class="card" id="card-light">
+        <h2>Light</h2>
+        <p class="value"><span id="light-value">—</span><span class="unit">/1023</span></p>
+      </article>
+      <article class="card" id="card-motion">
+        <h2>Motion</h2>
+        <p class="value"><span id="motion-value">—</span></p>
+      </article>
+    </section>
+
+    <section class="panels">
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Temperature history</h2>
+          <span class="panel-hint">most recent readings</span>
+        </div>
+        <canvas id="history-chart" width="800" height="220" role="img"
+                aria-label="Temperature history chart"></canvas>
+        <div class="table-wrap">
+          <table id="history-table">
+            <thead>
+              <tr>
+                <th>Time</th><th>Temp (°C)</th><th>Hum (%)</th>
+                <th>Light</th><th>Motion</th><th>Source</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Alerts</h2>
+          <span class="panel-hint">newest first</span>
+        </div>
+        <ul id="alerts-list" class="alerts-list">
+          <li class="empty">No alerts.</li>
+        </ul>
+
+        <div class="panel-head">
+          <h2>System events</h2>
+        </div>
+        <ul id="events-list" class="events-list">
+          <li class="empty">No events.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      AegisLab is a local prototype built with hobby sensors. It is not a
+      certified safety device; thresholds are configuration choices and
+      readings can be inaccurate.
+    </p>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

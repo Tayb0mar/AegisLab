@@ -1,0 +1,30 @@
+# Environment / secrets
+.env
+*.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+venv/
+.venv/
+
+# Data artifacts
+data/*.joblib
+data/*.csv
+data/*.log
+
+# IDE / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Build
+dist/
+build/
+CLAUDE.md
+docs/specifications/
